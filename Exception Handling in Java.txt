@@ -1,0 +1,332 @@
+
+                             EXCEPTION HANDLING
+
+Defination:
+exception is a runtime error or any abnormal event occurs  in a normal program. 
+
+Expection Handling is a mechanism it process the generated exception(it handle the runtime error).
+
+runtime error are detected by JVM.
+
+advantage:
+we can ensure the program is not terminated abnormally and user data not lost.
+
+Note:
+In java without exception handling '0'will generated the exception and then program will be terminated
+ no user understandable message displayed.
+
+
+Five Reserved keywords to handle the exception:
+1.Try
+2.Catch
+3.Throw
+4.Throws
+5.Finally
+
+
+Try:-
+It is a Keyword used to create block statements which are doubtfull of generating exception.
+
+syntax:
+try
+{
+    statements1;
+    statements2;
+    .....
+ }
+
+Cacth:-
+It is a keyword used to handle the exception
+-> it contains block statements(handling exception)
+syntax:
+catch(type of exception  exception object)
+{
+   handling code
+}
+
+Throw:
+it is a keyword used to create an exception and throw it explicitly.
+-> throw ourown exception using throw keyword.
+-> The flow of execution stops immediatly after the throw statements and any subsequence statements are not executed.
+
+syntax:
+try
+{
+   throw new exceptiontype("content")
+}
+
+Throws:
+it is a keyword it contains list the type of exception that a method throw.
+-> Throws keyword is used when we doesnot want to handle the exception and try to dsend the exception to the JVM or caller.
+
+syntax:
+returntype methodname(parameters) throws ExceptionLists
+ex:
+static void method() throws ArithmaticException
+
+Finally:
+it is a keyword used to create a block of code after the try/catch block whether exception is handled or not.
+if an exception occurs then the catch block executes after that finally block will be excuted.
+if no exception ,then finally block executed.
+in case there is an exception, but there is no catch block matching,then the code execution steps the rest of code
+ and executes the finally block.
+the finally block follow a try block or catch block
+
+syntax:
+try
+{
+   code
+}
+catch ( Type of Exception object)
+{ 
+code 
+}
+
+finally
+{
+code
+}
+
+
+
+
+   TYPES OF EXCEPTION:
+ 1. Checked expection:
+   which is occured at compile time .it is handled by us.
+    The classes that extend Throwable class except runtime and error are called checked exception.
+   ex:IOException,FileNotFoundException,ClassNotFoundException,NoSuchMethodError,InterruptedException etc.,
+
+2.Unchecked expection:
+   which is occured at runtime .it is  also handled by us.
+   The classes that extend runtime and error are called Unchecked exception.
+   ex:NullPointerException,ArrayIndexOutOfBoundsException,ArithmeticException,InputMismatchException,NumberFormatException etc,
+3.error:
+ it is cannot handled by us
+ex:OutOfMemory,VirtualMachineError,assertionError etc,
+
+note:every exception are also represented by classes in java.
+2.all exceptions are subclasses of exception class.
+
+
+
+UserDefinedException:
+
+by using throw keyword:
+
+
+// class representing custom exception  
+class MyCustomException extends Exception  
+{  
+    
+}  
+
+import java.lang.*;
+    
+// class that uses custom exception MyCustomException  
+public class Demo  
+{  
+    // main method  
+    public static void main(String args[])  
+    {  
+        try  
+        {  
+            // throw an object of user defined exception  
+            throw new MyCustomException();  
+        }  
+        catch (MyCustomException ex)  
+        {  
+            System.out.println("Caught the exception");  
+            System.out.println(ex.getMessage());  
+        }  
+  
+        System.out.println("rest of the code...");    
+    }  
+}
+
+
+
+Unchecked Exception:
+
+1.ArithmeticException:
+Runtime error during Arithemetic operations such as division by zero.
+
+example:
+import java.lang.*;
+
+public class Demo
+{
+  public static void main(String args[])
+  {
+   try{
+       int a=0,b=10,c;
+       c=b/a;
+       system.out.println("value of c is : "+c);
+       }
+   catch (ArithmeticException e)
+      {
+       system.out.println(e.getmessage());
+      }
+      system.out.println(rest code);
+  }
+}
+  
+       
+
+2.ArrayIndexOutOfBoundsException:
+Referring to the position of the element that is not in an array.
+
+example:
+public class Demo
+{
+  public static void main(String args[])
+  {
+   int[] numbers = new int[] {1, 2, 3, 4, 5};
+   System.out.println(numbers[5]);
+   //int lastNumber = numbers[5];
+   //System.out.println("value of lastNumber is : "+ lastNumber)
+
+  } 
+  
+}  
+
+
+3.NullPointerException:
+
+NullPointerException is a RuntimeException. In Java, a special null value can be assigned to an object reference. 
+NullPointerException is thrown when program attempts to use an object reference that has the null value.
+
+Example:
+public class Demo {
+   public static void main(String[] args) {
+      Object ref = null;
+      ref.toString(); // this will throw a NullPointerException
+   }
+}
+
+4.NumberFormatException:
+The NumberFormatException is an unchecked exception in Java that occurs when an attempt is made to convert
+ a string with an incorrect format to a numeric value.
+example:
+public class Demo {
+    public static void main(String args[]) {
+        int a = Integer.parseInt("1a");
+        System.out.println(a);
+    }
+}
+
+5.InputMismatchException:
+It occurs where exception thrown by a scanner object to indicate that a recievedtoken
+ does not match the pattern 
+for the excepted type or token is out of range for excepted type.
+
+
+public class Demo {
+    public static void main(String args[]) {
+     Scanner sc=new Scanner(system.in);
+     try{
+         System.out.println("enter value to get square value.");
+         Integer a=sc.nextInt();
+         System.out.println((a*a));
+         }
+     catch(InputMismatchException e){
+      System.out.println(a);
+       }
+   }
+}
+
+ 
+
+
+
+
+CheckedException:
+
+1.ClassNotFoundException:
+
+public class Demo
+{
+   public static void main(String args[])
+  {
+    try{
+       Class.forName("Demo");
+       }catch(ClassNotFoundException e){
+          e.printStackTrace();
+        }
+   }
+}
+
+or
+
+
+public static void main(String[] args) {
+ 
+ /* checked vs unchecked exception example */
+ try {
+  Class.forName("com.mcnz.Example");
+ } catch (ClassNotFoundException e) {
+  System.out.println("Class was not found.");
+ }
+    
+ String input = null;
+ input.length(); // throws an unchecked exception
+    
+}
+      
+2.NoSuchMethodError:
+calling a method which is not available
+or
+it is a runtime error in Java which occurs when a method is called 
+that exists at compile-time, but does not exist at runtime.
+example:
+public class Demo {
+    
+}
+public class Main {
+    public static void main(String[] args) {
+            Demo d1 = new Demo();
+            d1.print("Hello World");
+        }
+}
+
+
+3.FileNotFoundException:
+File not found in the directory.
+example:
+import java.io.*;
+Class Demo
+{
+  public static void main(String[] args) {
+   F‎ileInputStream fs=new FileInputStream("abc.txt");
+  } 
+}
+
+
+4.IOException:
+General failures such as inability to read from a file.
+
+import java.io.*;
+Class Demo
+{
+  public static void main(String[] args) {
+   F‎ileInputStream fs=new FileInputStream("abc.txt");
+    while(fs.read()==-1)
+     system.out.println(fs);
+  } 
+}
+
+
+5.InterruptedException:
+one processor interrupt another processor.
+Class Demo
+{
+  public static void main(String[] args) {
+   {
+     Thread t=new Thread();
+    t.start();
+    t.sleep(1000);
+    }
+  }
+}
+
+
+
